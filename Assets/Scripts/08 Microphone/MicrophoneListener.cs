@@ -10,6 +10,11 @@ public class MicrophoneListener : MonoBehaviour
     //mic initialization
     void InitMic()
     {
+        Debug.Log("Microphone device count: " + Microphone.devices.Length);
+        for(int i = 0; i < Microphone.devices.Length; i++)
+        {
+            Debug.Log("Microphone device: " + Microphone.devices[0]);
+        }
         if (_device == null) _device = Microphone.devices[0];
         _clipRecord = Microphone.Start(_device, true, 999, 44100);
     }
@@ -50,7 +55,6 @@ public class MicrophoneListener : MonoBehaviour
         // levelMax equals to the highest normalized value power 2, a small number because < 1
         // pass the value to a static var so we can access it from anywhere
         MicLoudness = LevelMax();
-        Debug.Log(MicLoudness);
     }
 
     bool _isInitialized;
